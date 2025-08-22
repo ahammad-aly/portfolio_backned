@@ -8,8 +8,10 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 import emailRoute from "./routers/email.router.js";
 app.use("/api/email", emailRoute);
 
-app.listen(process.env.PORT, () => {
-  console.log(`Server running on port: http://localhost:${process.env.PORT}`);
+app.listen(process.env.PORT || 4000, () => {
+  console.log(
+    `Server running on port: http://localhost:${process.env.PORT || 4000}`
+  );
 });
 
 export { app };
