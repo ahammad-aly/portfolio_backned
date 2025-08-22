@@ -1,9 +1,9 @@
 import nodemailer from "nodemailer";
 
 export async function sendEmail(req, res) {
-  const { name, number, email, message } = req.body;
+  const { name, email, message } = req.body;
 
-  if ([name, number, email, message].some((fields) => fields?.trim() === "")) {
+  if ([name, email, message].some((fields) => fields?.trim() === "")) {
     throw new ApiErrors(400, "All fields are required");
   }
 
