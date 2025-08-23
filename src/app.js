@@ -8,8 +8,8 @@ dotenv.config();
 
 app.use(
   cors({
-    origin: "https://as-ahammad.vercel.app",
-    // origin: "http://localhost:5173",
+    // origin: "https://as-ahammad.vercel.app",
+    origin: "http://localhost:5173",
   })
 );
 app.use(express.json({ limit: "16kb" }));

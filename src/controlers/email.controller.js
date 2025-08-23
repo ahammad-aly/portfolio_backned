@@ -4,7 +4,9 @@ export async function sendEmail(req, res) {
   const { name, email, message } = req.body;
 
   if ([name, email, message].some((fields) => fields?.trim() === "")) {
-    throw new ApiErrors(400, "All fields are required");
+    return res
+      .status(400)
+      .json({ stat: 400, msgerr: "All fields are required" });
   }
 
   const transporter = nodemailer.createTransport({
@@ -23,16 +25,13 @@ export async function sendEmail(req, res) {
       from: email,
       to: process.env.EMAIL_ADDRESS,
       subject: name,
-      text: `Message: ${message}\n\nEmailed By: ${email}`,
+      text: `Message from your Portfolio: ${message}\n\nEmailed By: ${email}`,
       replyTo: email,
     },
     (err, info) => {
       if (err) {
-        console.error(err);
-        return;
+        return res.json({ msgErr: err });
       }
-      console.log(info.envelope);
-      //   console.log(info.messageId);
     }
   );
   return res
