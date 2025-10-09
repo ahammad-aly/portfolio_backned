@@ -19,8 +19,5 @@ app.get("/", (req, res) => {
   res.send("<h2>Hi there, this is from portfolio backend</h2>");
 });
 
-app.listen(port, () => {
-  console.log(`Server is runing at port : http://localhost:${port}`);
-});
 export const handler = serverless(app);
 export default app;
